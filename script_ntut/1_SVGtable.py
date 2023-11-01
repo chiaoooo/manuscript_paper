@@ -123,8 +123,8 @@ def read_json(file):
             print(f"Error reading JSON file: {file}")
             return []
         
-        v = [""] * 763
-        for i in range(763):
+        v = [""] * 1679
+        for i in range(1679):
             try:
                 code = p["CP950"][i]["UNICODE"][2:6]
                 v[i] = "\\u{}".format(code)
@@ -134,79 +134,79 @@ def read_json(file):
                 v[i] = ""  # You can decide what to do in case of an error.
         return v
 
-# def print_font(count, page, fnip):
-#     index = 0
-#     X = np.arange(7.5, 192.5, 20)
-#     Y = np.arange(21, 281, 26)
-#     for j in range(10):
-#         for i in range(10):
-#             if count >= 763:
-#                 plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
-#                 # plt.text(12.5+16.25*j, 23+17*i, '', fontsize=32, color='black')
-#             else:
-#                 if unicode[count] == "123" or count >= 763:
-#                     plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
-#                     fnip[page][index] = ""  # 第(page+1)頁 第(index+1)個字
-#                     # plt.text(7+16.25*j, 26.7+17*i, '\\u25A0'.encode('ascii').decode('unicode-escape'), fontsize=64, color='black')
-#                 else:
-#                     plt.text(
-#                         X[i] + 1,
-#                         Y[j] - 3,
-#                         unicode[count].encode("ascii").decode("unicode-escape"),
-#                         fontsize=14,
-#                         color="black",
-#                         alpha=0.7,
-#                     )
-#                     plt.text(
-#                         X[i] + 8.5,
-#                         Y[j] - 3,
-#                         unicode[count][2:6],
-#                         fontsize=8,
-#                         color="black",
-#                         alpha=0.7,
-#                     )
-#                     fnip[page][index] = unicode[count][2:6]
-#                 index += 1
-#             count += 1
-
 def print_font(count, page, fnip):
     index = 0
     X = np.arange(7.5, 192.5, 20)
     Y = np.arange(21, 281, 26)
     for j in range(10):
         for i in range(10):
-            if count >= 763:
+            if count >= 1679:
                 plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
+                # plt.text(12.5+16.25*j, 23+17*i, '', fontsize=32, color='black')
             else:
-                try:
-                    if unicode[count] == "123" or count >= 763:
-                        plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
-                        fnip[page][index] = ""
-                    else:
-                        plt.text(
-                            X[i] + 1,
-                            Y[j] - 3,
-                            unicode[count].encode("ascii").decode("unicode-escape"),
-                            fontsize=14,
-                            color="black",
-                            alpha=0.7,
-                        )
-                        plt.text(
-                            X[i] + 8.5,
-                            Y[j] - 3,
-                            unicode[count][2:6],
-                            fontsize=8,
-                            color="black",
-                            alpha=0.7,
-                        )
-                        fnip[page][index] = unicode[count][2:6]
-                except UnicodeDecodeError as e:
-                    # Handle the UnicodeDecodeError here (e.g., print a message, log it, or skip the entry).
-                    print(f"Error processing entry {count}: {str(e)}")
+                if unicode[count] == "123" or count >= 1679:
                     plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
-                    fnip[page][index] = ""  # You can decide what to do in case of an error.
+                    fnip[page][index] = ""  # 第(page+1)頁 第(index+1)個字
+                    # plt.text(7+16.25*j, 26.7+17*i, '\\u25A0'.encode('ascii').decode('unicode-escape'), fontsize=64, color='black')
+                else:
+                    plt.text(
+                        X[i] + 1,
+                        Y[j] - 3,
+                        unicode[count].encode("ascii").decode("unicode-escape"),
+                        fontsize=14,
+                        color="black",
+                        alpha=0.7,
+                    )
+                    plt.text(
+                        X[i] + 8.5,
+                        Y[j] - 3,
+                        unicode[count][2:6],
+                        fontsize=8,
+                        color="black",
+                        alpha=0.7,
+                    )
+                    fnip[page][index] = unicode[count][2:6]
                 index += 1
             count += 1
+
+# def print_font(count, page, fnip):
+#     index = 0
+#     X = np.arange(7.5, 192.5, 20)
+#     Y = np.arange(21, 281, 26)
+#     for j in range(10):
+#         for i in range(10):
+#             if count >= 190:
+#                 plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
+#             else:
+#                 try:
+#                     if unicode[count] == "123" or count >= 190:
+#                         plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
+#                         fnip[page][index] = ""
+#                     else:
+#                         plt.text(
+#                             X[i] + 1,
+#                             Y[j] - 3,
+#                             unicode[count].encode("ascii").decode("unicode-escape"),
+#                             fontsize=14,
+#                             color="black",
+#                             alpha=0.7,
+#                         )
+#                         plt.text(
+#                             X[i] + 8.5,
+#                             Y[j] - 3,
+#                             unicode[count][2:6],
+#                             fontsize=8,
+#                             color="black",
+#                             alpha=0.7,
+#                         )
+#                         fnip[page][index] = unicode[count][2:6]
+#                 except UnicodeDecodeError as e:
+#                     # Handle the UnicodeDecodeError here (e.g., print a message, log it, or skip the entry).
+#                     print(f"Error processing entry {count}: {str(e)}")
+#                     plt.text(X[i], Y[j] - 2, "", fontsize=15, color="black", alpha=0.7)
+#                     fnip[page][index] = ""  # You can decide what to do in case of an error.
+#                 index += 1
+#             count += 1
 
             
 def table_square(axes):

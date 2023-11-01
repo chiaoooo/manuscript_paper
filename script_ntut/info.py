@@ -1,5 +1,5 @@
-TOTAL_PAGES = 4
+TOTAL_PAGES = 17
 # personal information below
 ID = " "  # student ID here
 NAME = " "  # name here
-NUMBER = 11  # number here
+NUMBER = 1  # number here
