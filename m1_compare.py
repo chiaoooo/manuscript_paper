@@ -1,4 +1,4 @@
-with open("all_word.txt", "r", encoding="utf-8") as file:
+with open("education_4808.txt", "r", encoding="utf-8") as file:
     text = file.read()
 
 # 去除空格和換行符
@@ -8,7 +8,7 @@ text = text.replace(" ", "").replace("\n", "")
 unique_characters = set(text)
 
 # 建立一個txt檔案並將不重複的字元寫入其中
-output_file = "chinese_character.txt"
+output_file = "edu_chinese_character.txt"
 with open(output_file, "w", encoding="utf-8") as file:
     for char in unique_characters:
         file.write(char)
